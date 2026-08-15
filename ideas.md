@@ -109,3 +109,6 @@ Les scènes épinglées ne s’activent qu’au-delà de 900 px. Sur mobile ou a
 - Chaque scène épinglée doit montrer une preuve de narration pendant toute sa durée : matière, progression, repère, image de projet ou phasage. Aucun intervalle de scroll n’est utilisé comme simple espace vide.
 - Le Terre de Brique est un signal de construction fonctionnel : amorce de règle, point d’axe, avancement, nombre-clé ou action. Il n’est jamais employé pour remplir une surface sans rôle.
 - Le signe linteau/axe se répète comme un repère structurel lié à l’alignement des sections, à la progression et au cadrage du récit.
+- Toute respiration longue du récit doit conserver une preuve visible : fragment de matière, libellé de phasage, axe, coordonnée, progression ou donnée de chantier. L’espace ne peut jamais devenir un temps mort.
+- Les pages secondaires reprennent au minimum trois signaux B.T.P. — cadre de plan, axe/linteau, marqueur Terre de Brique, coordonnées ou matière cadrée — afin de prolonger le même univers éditorial que la page d’accueil.
+- Les pages publiques conservent une voix tournée vers le projet et le chantier. Les références aux outils internes, à la configuration ou au déploiement restent hors de l’expérience visiteur.

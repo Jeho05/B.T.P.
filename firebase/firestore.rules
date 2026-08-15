@@ -1,0 +1,53 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // An administrator is explicitly provisioned by its Firebase UID in /admins/{uid}.
+    // This avoids granting access solely because a user can sign in.
+    function isAdmin() {
+      return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function hasShortText(field, maximum) {
+      return field is string && field.size() > 0 && field.size() <= maximum;
+    }
+
+    match /quoteRequests/{requestId} {
+      allow create: if hasShortText(request.resource.data.fullName, 120)
+        && hasShortText(request.resource.data.email, 254)
+        && hasShortText(request.resource.data.projectType, 100)
+        && hasShortText(request.resource.data.message, 4000)
+        && request.resource.data.consent == true
+        && request.resource.data.status == "new";
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /projects/{projectId} {
+      allow read: if resource.data.status == "published" || isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /services/{serviceId} {
+      allow read: if resource.data.status == "published" || isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /media/{mediaId} {
+      allow read: if resource.data.status == "published" || isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /admins/{userId} {
+      allow read: if signedIn() && request.auth.uid == userId;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

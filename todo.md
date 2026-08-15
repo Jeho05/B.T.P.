@@ -83,10 +83,12 @@
 
 # Intégration — Firebase externe
 
-- [ ] Auditer les composants existants, les routes et les points d’entrée des médias.
+- [x] Auditer les composants existants, les routes et les points d’entrée des médias.
 - [ ] Créer et configurer le projet Firebase externe avec Auth, Firestore et Storage.
-- [ ] Écrire les règles d’accès et le schéma des réalisations, services, demandes et médias.
-- [ ] Connecter les formulaires et les contenus publics à Firebase.
-- [ ] Construire l’espace d’administration sécurisé et la médiathèque.
-- [ ] Corriger les positions strictes du hero à sept calques et les médias incomplets.
+- [x] Écrire les règles d’accès et le schéma des réalisations, services, demandes et médias.
+- [x] Connecter les formulaires et les contenus publics à Firebase.
+- [x] Construire l’espace d’administration sécurisé et la médiathèque.
+- [x] Corriger les positions strictes du hero à sept calques et les médias incomplets.
+- [ ] Enregistrer l’application Web Firebase, déployer les règles et injecter les paramètres publics Vercel.
+- [ ] Créer le premier compte et profil administrateur Firebase (`admins/{uid}`).
 - [ ] Tester, synchroniser GitHub et préparer la mise à jour Vercel.

@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { ZoomParallax } from "@/components/ui/zoom-parallax";
+import { QuoteRequestForm } from "@/components/QuoteRequestForm";
 
 const ASSETS = {
   hero: "/manus-storage/btp-hero-cinematic_31a3c819.jpg",
@@ -299,12 +300,12 @@ export default function Home() {
 
         <nav className={`site-nav ${menuOpen ? "is-open" : ""}`} aria-label="Navigation principale">
           <a href="#vision" onClick={closeMenu}>Vision</a>
-          <a href="#savoir-faire" onClick={closeMenu}>Savoir-faire</a>
-          <a href="#terrains" onClick={closeMenu}>Terrains</a>
+          <a href="/services" onClick={closeMenu}>Savoir-faire</a>
+          <a href="/realisations" onClick={closeMenu}>Terrains</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
         </nav>
 
-        <a className="header-cta" href="#contact">
+        <a className="header-cta" href="/devis">
           <span>Parler projet</span>
           <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
         </a>
@@ -530,10 +531,7 @@ export default function Home() {
             <p className="eyebrow"><span className="orange-dot" /> 05 / le prochain ouvrage</p>
             <h2 id="contact-title">Tout commence<br />par un <em>terrain.</em></h2>
             <p className="contact-copy">Parlons de l’usage, du lieu et de l’ambition. Nous construirons la suite avec vous.</p>
-            <a className="contact-link" href="mailto:contact@votre-domaine.fr?subject=Projet%20B.T.P.">
-              Décrire votre projet <ArrowUpRight aria-hidden="true" size={21} />
-            </a>
-            <p className="contact-note">Adresse e-mail à personnaliser avant publication</p>
+            <QuoteRequestForm compact />
           </div>
           <div className="contact-coordinate">B.T.P. / FRANCE / 2026</div>
         </section>

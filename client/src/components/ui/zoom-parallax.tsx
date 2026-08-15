@@ -41,6 +41,8 @@ export function ZoomParallax({ images, children, className = "" }: ZoomParallaxP
   const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.56, 0.86, 1], [1, 1, 0.25, 0]);
   const overlayScale = useTransform(scrollYProgress, [0, 1], [1, 0.93]);
+  const proofOpacity = useTransform(scrollYProgress, [0, 0.42, 0.72, 1], [0, 0, 0.9, 1]);
+  const proofY = useTransform(scrollYProgress, [0.42, 1], [24, 0]);
   const scales = [scale4, scale5, scale6, scale5, scale6, scale8, scale9];
 
   return (
@@ -60,6 +62,12 @@ export function ZoomParallax({ images, children, className = "" }: ZoomParallaxP
           ))}
         </div>
         <div className="zoom-parallax__veil" aria-hidden="true" />
+        <motion.div className="zoom-parallax__proof" style={shouldReduceMotion ? undefined : { opacity: proofOpacity, y: proofY }} aria-hidden="true">
+          <span>02 / PASSAGE DE MATIÈRE</span>
+          <i />
+          <strong>LE TERRAIN<br />PREND FORME.</strong>
+          <small>AXE 04.27 / PREUVE DE CHANTIER</small>
+        </motion.div>
         <motion.div
           className="zoom-parallax__content"
           style={shouldReduceMotion ? undefined : { opacity: overlayOpacity, scale: overlayScale }}
