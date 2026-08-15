@@ -106,3 +106,9 @@
 - [x] Observer le scroll du hero à des positions intermédiaires et confirmer la progression des sept calques.
 - [x] Renforcer le parcours de scroll et les transformations de profondeur du Zoom Parallax.
 - [ ] Vérifier le comportement animé sur ordinateur et mobile, puis synchroniser la correction.
+
+# Correctif — moteur de scroll fiable
+
+- [x] Remplacer le pilotage du hero par une timeline GSAP ScrollTrigger liée aux sept calques.
+- [x] Relever les échelles effectives pendant un scroll navigateur et confirmer les transitions du contenu.
+- [ ] Vérifier le rendu mobile, synchroniser GitHub et préparer le déploiement Vercel.
