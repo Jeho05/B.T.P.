@@ -70,3 +70,25 @@ Le signe sera une **forme de linteau monolithique interrompue par un trait d’a
 ### Couleur signature
 
 La couleur propriétaire est le **Terre de Brique**, un orange argile profond (`#C95B32`). Elle sera réservée à la signalisation, aux appels à l’action et aux marqueurs de progression, afin de rester reconnaissable et puissante.
+
+## Mise en récit immersive — version 1
+
+La page d’accueil sera vécue comme une traversée de chantier plutôt que comme une succession de blocs promotionnels. Elle s’ouvrira sur une image de site à grande échelle, cadrée comme une séquence de cinéma, avec une typographie massive et un repère de défilement. La narration progressera ensuite de la matière vers l’ouvrage : **vision**, **gestes de chantier**, **réalisations**, puis **ouverture d’un nouveau projet**.
+
+| Séquence | Rôle narratif | Traitement immersif |
+|---|---|---|
+| **01 — Le réel en construction** | Installer l’ambition de B.T.P. et la force du métier. | Hero pleine hauteur, mouvement de voile au chargement, repère vertical et image minérale. |
+| **02 — Construire avec méthode** | Exprimer la maîtrise sans faire de promesses chiffrées non vérifiables. | Texte éditorial à grande échelle, ligne de progression et mots-clés qui se dévoilent au défilement. |
+| **03 — Gestes & matières** | Montrer la dimension humaine, technique et matérielle. | Cartes visuelles asymétriques, déplacement de profondeur léger et détails de coordonnées. |
+| **04 — Terrains d’intervention** | Présenter les familles de projets. | Panneaux à défilement horizontal sur ordinateur, empilés sur mobile, avec transitions guidées. |
+| **05 — Le prochain ouvrage** | Faire converger la visite vers une prise de contact. | Section finale sombre, signe monolithique animé et appel à initier une conversation. |
+
+### Règle de mouvement
+
+Chaque mouvement devra apporter une information, révéler une matière ou guider le regard. Le site utilisera des apparitions par translation courte, une progression de lecture et des parallaxes très légères. Aucune animation décorative continue ne doit distraire la navigation, et le contenu reste disponible sans animation pour les personnes qui l’ont désactivée.
+
+## Style Decisions
+
+- La signature B.T.P. est toujours affichée comme un lockup propriétaire : le signe de linteau traversé par son axe Terre de Brique est indissociable du mot-signe.
+- La grammaire graphique du site emploie systématiquement des règles fines, axes, codes de section, coordonnées et repères de progression. Ces éléments doivent guider la lecture, jamais devenir de la décoration gratuite.
+- Les visuels alternent une échelle monumentale — ouvrage, territoire, façade — et une échelle humaine — geste, outil, plan, équipe — pour exprimer autant la rigueur que le soin.
