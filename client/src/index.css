@@ -118,10 +118,10 @@ img { display: block; max-width: 100%; }
 .header-cta:hover svg, .back-top:hover svg { transform: translate(3px, -3px); }
 .menu-toggle { display: none; color: inherit; background: transparent; border: 0; }
 
-.zoom-parallax { position: relative; height: 240vh; background: var(--ink); }
+.zoom-parallax { position: relative; height: 300vh; background: var(--ink); }
 .zoom-parallax__sticky { position: sticky; top: 0; height: 100svh; min-height: 680px; overflow: hidden; isolation: isolate; }
 .zoom-parallax__layers, .zoom-parallax__veil, .zoom-parallax__content { position: absolute; inset: 0; }
-.zoom-parallax__layers { z-index: -2; overflow: hidden; background: var(--ink); }
+.zoom-parallax__layers { z-index: 0; overflow: hidden; background: var(--ink); }
 .zoom-parallax__layer { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; will-change: transform; }
 .zoom-parallax__frame { position: relative; width: 25vw; height: 25vh; overflow: hidden; background: var(--ink); box-shadow: 0 0 0 1px rgba(239, 237, 231, 0.08); }
 .zoom-parallax__frame img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.72) contrast(1.08) brightness(0.78); }
@@ -138,7 +138,7 @@ img { display: block; max-width: 100%; }
 .zoom-parallax__layer--south .zoom-parallax__frame { position: absolute; top: 27.5vh; left: -22.5vw; width: 30vw; height: 25vh; }
 .zoom-parallax__layer--southeast { z-index: 7; }
 .zoom-parallax__layer--southeast .zoom-parallax__frame { position: absolute; top: 22.5vh; left: 25vw; width: 15vw; height: 15vh; }
-.zoom-parallax__veil { z-index: -1; background: linear-gradient(90deg, rgba(10, 11, 10, 0.84) 0%, rgba(10, 11, 10, 0.5) 48%, rgba(10, 11, 10, 0.17) 100%), linear-gradient(0deg, rgba(10, 11, 10, 0.5), transparent 40%); pointer-events: none; }
+.zoom-parallax__veil { z-index: 1; background: linear-gradient(90deg, rgba(10, 11, 10, 0.84) 0%, rgba(10, 11, 10, 0.5) 48%, rgba(10, 11, 10, 0.17) 100%), linear-gradient(0deg, rgba(10, 11, 10, 0.5), transparent 40%); pointer-events: none; }
 .zoom-parallax__proof { position: absolute; z-index: 1; right: max(34px, 6vw); bottom: 9vh; left: max(34px, 6vw); display: grid; grid-template-columns: minmax(165px, 0.45fr) minmax(35px, 0.18fr) 1fr; gap: 17px; align-items: end; color: var(--chalk); pointer-events: none; }
 .zoom-parallax__proof span, .zoom-parallax__proof small { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 .zoom-parallax__proof i { width: 100%; height: 2px; margin-bottom: 7px; background: var(--brick-bright); }

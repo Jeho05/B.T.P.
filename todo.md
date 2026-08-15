@@ -100,3 +100,9 @@
 - [x] Tenter l’installation de la référence `zoom-parallax` de 21st demandée par le propriétaire (registre externe non autorisé).
 - [x] Adapter localement le composant aux assets B.T.P. sans modifier sa géométrie ou ses échelles.
 - [ ] Vérifier le rendu production, synchroniser GitHub et préparer la publication Vercel.
+
+# Correctif — immersion réelle du hero
+
+- [x] Observer le scroll du hero à des positions intermédiaires et confirmer la progression des sept calques.
+- [x] Renforcer le parcours de scroll et les transformations de profondeur du Zoom Parallax.
+- [ ] Vérifier le comportement animé sur ordinateur et mobile, puis synchroniser la correction.
