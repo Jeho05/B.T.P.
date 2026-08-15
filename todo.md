@@ -39,3 +39,19 @@
 - [x] Adapter le zoom-parallaxe aux visuels B.T.P. et à l’identité de marque.
 - [x] Remplacer le hero actuel par une scène d’introduction transformée au scroll.
 - [ ] Tester puis synchroniser la révision du hero.
+
+# Publication — hébergement
+
+- [x] Vérifier la voie de publication compatible avec la version enregistrée.
+- [x] Présenter les étapes de mise en ligne et les contraintes de Vercel.
+
+# Contrôle — production Vercel
+
+- [ ] Vérifier l’accessibilité, le rendu et les séquences immersives sur l’URL publiée.
+- [ ] Communiquer le résultat du contrôle de production.
+
+# Correction — configuration Vercel
+
+- [x] Configurer la sortie de build statique que Vercel doit servir.
+- [ ] Synchroniser la correction de configuration avec GitHub.
+- [ ] Redéployer depuis Vercel et vérifier l’interface en production.
