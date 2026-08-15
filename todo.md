@@ -112,3 +112,11 @@
 - [x] Remplacer le pilotage du hero par une timeline GSAP ScrollTrigger liée aux sept calques.
 - [x] Relever les échelles effectives pendant un scroll navigateur et confirmer les transitions du contenu.
 - [ ] Vérifier le rendu mobile, synchroniser GitHub et préparer le déploiement Vercel.
+
+# Audit — animation immersive de bout en bout
+
+- [x] Comparer le composant, ses imports et ses dépendances avec la documentation 21st d’origine.
+- [x] Vérifier les règles CSS mobile, le montage React et l’intégration de Lenis.
+- [x] Contrôler le build et les scripts réellement servis par le dernier déploiement Vercel.
+- [x] Corriger la cause racine : architecture canonique Framer Motion sur 300vh et défilement Lenis.
+- [ ] Déployer, tester la version publique et documenter les preuves de mouvement.

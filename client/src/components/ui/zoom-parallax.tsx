@@ -1,13 +1,17 @@
 /**
  * Design system reminder — Matière & Maîtrise:
- * cinematic mineral layers that let the scroll reshape one architectural composition.
- * Geometry follows the seven-layer Zoom Parallax reference requested from 21st.
- * Motion uses the same GSAP ScrollTrigger engine as the proven cinematic scenes.
+ * cinematic mineral layers that let native scroll reshape one architectural composition.
+ * This is the canonical 21st-style Zoom Parallax: Framer Motion tracks a 300vh container
+ * and gives the seven layers their independent 4/5/6/5/6/8/9 scales.
  */
-import { useReducedMotion } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { type ReactNode, useLayoutEffect, useRef } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
+import { type ReactNode, useRef } from "react";
 
 interface ZoomParallaxImage {
   src: string;
@@ -34,55 +38,34 @@ export function ZoomParallax({ images, children, className = "" }: ZoomParallaxP
   const container = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  useLayoutEffect(() => {
-    const root = container.current;
-    if (!root || shouldReduceMotion) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-    const context = gsap.context(() => {
-      const layers = gsap.utils.toArray<HTMLElement>(".zoom-parallax__layer");
-      const veil = root.querySelector<HTMLElement>(".zoom-parallax__veil");
-      const content = root.querySelector<HTMLElement>(".zoom-parallax__content");
-
-      gsap.set(layers, { force3D: true, transformOrigin: "50% 50%" });
-
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: root,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.45,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      layers.forEach((layer, index) => {
-        timeline.to(
-          layer,
-          { scale: layerSpecs[index].endScale, duration: 1, ease: "none", force3D: true },
-          0,
-        );
-      });
-
-      if (veil) timeline.to(veil, { autoAlpha: 0, duration: 0.76, ease: "none" }, 0.16);
-      if (content) timeline.to(content, { autoAlpha: 0, yPercent: -18, duration: 0.6, ease: "none" }, 0.2);
-    }, root);
-
-    return () => context.revert();
-  }, [shouldReduceMotion]);
+  // The reference component derives every scale from this single scroll progress value.
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"],
+  });
+  const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
+  const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
+  const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
+  const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
+  const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
+  const veilOpacity = useTransform(scrollYProgress, [0, 0.72], [1, 0]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.56], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.56], [0, -68]);
+  const scales: MotionValue<number>[] = [scale4, scale5, scale6, scale5, scale6, scale8, scale9];
 
   return (
-    <div ref={container} className={`zoom-parallax ${className}`}>
+    <div ref={container} className={`zoom-parallax ${className}`} data-zoom-parallax>
       <div className="zoom-parallax__sticky">
         <div className="zoom-parallax__layers" aria-hidden="true">
           {images.slice(0, layerSpecs.length).map(({ src, alt }, index) => {
             const layer = layerSpecs[index];
             return (
-              <div
+              <motion.div
                 key={src}
                 data-zoom-layer={index + 1}
                 data-zoom-target={layer.endScale}
                 className={`zoom-parallax__layer ${layer.className}`}
+                style={{ scale: shouldReduceMotion ? 1 : scales[index] }}
               >
                 <div className="zoom-parallax__frame">
                   <img
@@ -93,14 +76,21 @@ export function ZoomParallax({ images, children, className = "" }: ZoomParallaxP
                     fetchPriority={index === 0 ? "high" : "auto"}
                   />
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
-        <div className="zoom-parallax__veil" aria-hidden="true" />
-        <div className="zoom-parallax__content">
+        <motion.div
+          className="zoom-parallax__veil"
+          aria-hidden="true"
+          style={{ opacity: shouldReduceMotion ? 1 : veilOpacity }}
+        />
+        <motion.div
+          className="zoom-parallax__content"
+          style={{ opacity: shouldReduceMotion ? 1 : contentOpacity, y: shouldReduceMotion ? 0 : contentY }}
+        >
           {children}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

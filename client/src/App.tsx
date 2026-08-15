@@ -4,6 +4,8 @@
  */
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Lenis from "lenis";
+import { useEffect } from "react";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -27,6 +29,26 @@ function Router() {
 }
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.05,
+      easing: (time) => 1 - (1 - time) ** 4,
+      smoothWheel: true,
+      syncTouch: false,
+    });
+    let frame = 0;
+    const update = (time: number) => {
+      lenis.raf(time);
+      frame = requestAnimationFrame(update);
+    };
+    frame = requestAnimationFrame(update);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
