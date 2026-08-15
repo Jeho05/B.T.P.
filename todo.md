@@ -24,4 +24,11 @@
 - [x] Sélectionner des images et des vidéos de chantier utilisables temporairement.
 - [x] Préparer les médias pour un chargement et une lecture économes.
 - [x] Insérer les séquences dans les scènes de scroll pertinentes.
-- [ ] Vérifier puis synchroniser la révision multimédia sur GitHub.
+- [x] Vérifier puis synchroniser la révision multimédia sur GitHub.
+
+# Correction — scènes de scroll immersives
+
+- [x] Auditer les séquences en interaction réelle dans le navigateur.
+- [x] Étudier des références de motion design et de scroll cinématographique.
+- [x] Remplacer les mouvements discrets par des transformations de scène visibles.
+- [ ] Vérifier le parcours sur ordinateur et mobile, puis synchroniser la correction.

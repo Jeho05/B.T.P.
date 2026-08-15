@@ -186,6 +186,44 @@ export default function Home() {
 
         const media = gsap.matchMedia();
         media.add("(min-width: 901px)", () => {
+          const cinema = document.querySelector<HTMLElement>(".cinema-stage");
+          if (cinema) {
+            const cinemaTimeline = gsap.timeline({
+              scrollTrigger: {
+                trigger: cinema,
+                start: "top top",
+                end: "+=2400",
+                pin: true,
+                scrub: 0.85,
+                snap: {
+                  snapTo: [0, 0.31, 0.65, 1],
+                  delay: 0.1,
+                  duration: { min: 0.14, max: 0.42 },
+                  ease: "power2.inOut",
+                },
+                anticipatePin: 1,
+              },
+            });
+
+            cinemaTimeline
+              .set(".cinema-state-1", { autoAlpha: 1, y: 0 }, 0)
+              .to(".cinema-photo-a", { scale: 1.2, xPercent: -7, yPercent: 3, ease: "none", duration: 0.34 }, 0)
+              .to(".cinema-index-large", { yPercent: -28, rotation: -2, ease: "none", duration: 0.34 }, 0)
+              .to(".cinema-state-1", { autoAlpha: 0, y: -44, ease: "none", duration: 0.12 }, 0.23)
+              .to(".cinema-photo-b", { clipPath: "inset(0% 0% 0% 0%)", scale: 1, ease: "none", duration: 0.28 }, 0.27)
+              .to(".cinema-copy", { xPercent: 23, ease: "none", duration: 0.25 }, 0.27)
+              .to(".cinema-state-2", { autoAlpha: 1, y: 0, ease: "none", duration: 0.16 }, 0.34)
+              .to(".cinema-photo-b", { scale: 1.18, yPercent: -7, ease: "none", duration: 0.34 }, 0.45)
+              .to(".cinema-index-large", { yPercent: -58, rotation: -5, ease: "none", duration: 0.35 }, 0.45)
+              .to(".cinema-state-2", { autoAlpha: 0, y: -44, ease: "none", duration: 0.12 }, 0.56)
+              .to(".cinema-photo-c", { clipPath: "inset(0% 0% 0% 0%)", scale: 1, ease: "none", duration: 0.3 }, 0.6)
+              .to(".cinema-copy", { xPercent: 46, ease: "none", duration: 0.28 }, 0.6)
+              .to(".cinema-state-3", { autoAlpha: 1, y: 0, ease: "none", duration: 0.16 }, 0.69)
+              .to(".cinema-photo-c", { scale: 1.17, yPercent: -6, ease: "none", duration: 0.31 }, 0.69)
+              .to(".cinema-index-large", { yPercent: -86, rotation: -8, ease: "none", duration: 0.31 }, 0.69)
+              .to(".cinema-progress-fill", { scaleX: 1, transformOrigin: "left", ease: "none", duration: 1 }, 0);
+          }
+
           const stage = document.querySelector<HTMLElement>(".terrain-scroll-stage");
           const track = document.querySelector<HTMLElement>(".terrain-track");
 
@@ -323,6 +361,51 @@ export default function Home() {
             </a>
             <p className="hero-coordinate">45° 45′ N / 04° 50′ E</p>
           </div>
+        </section>
+
+        <section className="cinema-stage" aria-labelledby="cinema-title">
+          <h2 className="visually-hidden" id="cinema-title">Une traversée du chantier en trois mouvements</h2>
+          <div className="cinema-media" aria-hidden="true">
+            <img className="cinema-photo cinema-photo-a" src={ASSETS.gestures} alt="" />
+            <img className="cinema-photo cinema-photo-b" src={ASSETS.human} alt="" />
+            <video className="cinema-photo cinema-photo-c" muted loop autoPlay playsInline preload="metadata" poster={ASSETS.aerialPoster}>
+              <source src={ASSETS.aerialVideo} type="video/mp4" />
+            </video>
+            <div className="cinema-shade" />
+          </div>
+          <div className="cinema-axis cinema-axis-x" aria-hidden="true" />
+          <div className="cinema-axis cinema-axis-y" aria-hidden="true" />
+
+          <div className="cinema-topline">
+            <span><i /> 00.1 / TRAVERSÉE</span>
+            <span>SCROLL POUR TRANSFORMER</span>
+          </div>
+
+          <div className="cinema-copy">
+            <p className="eyebrow">L’ouvrage prend forme</p>
+            <p>Le scroll ne révèle pas une page. Il fait passer la matière d’un état à l’autre.</p>
+          </div>
+
+          <div className="cinema-states" aria-live="polite">
+            <article className="cinema-state cinema-state-1">
+              <span>01 / LIRE</span>
+              <strong>LE TERRAIN<br /><em>parle.</em></strong>
+              <p>Une contrainte devient une direction.</p>
+            </article>
+            <article className="cinema-state cinema-state-2">
+              <span>02 / ALIGNER</span>
+              <strong>LE GESTE<br /><em>répond.</em></strong>
+              <p>Chaque trait rejoint une intention tenue.</p>
+            </article>
+            <article className="cinema-state cinema-state-3">
+              <span>03 / INSCRIRE</span>
+              <strong>LE LIEU<br /><em>demeure.</em></strong>
+              <p>Un ouvrage qui continue après sa livraison.</p>
+            </article>
+          </div>
+
+          <div className="cinema-index-large" aria-hidden="true"><span>01</span><span>02</span><span>03</span></div>
+          <div className="cinema-progress" aria-hidden="true"><span>01</span><i><b className="cinema-progress-fill" /></i><span>03</span></div>
         </section>
 
         <section className="statement-section plan-section" data-plan="AXIS / 01 — 100" id="vision" aria-labelledby="vision-title">
