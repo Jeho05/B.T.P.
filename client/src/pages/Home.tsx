@@ -15,16 +15,16 @@ import { ZoomParallax } from "@/components/ui/zoom-parallax";
 import { QuoteRequestForm } from "@/components/QuoteRequestForm";
 
 const ASSETS = {
-  hero: "/manus-storage/btp-hero-cinematic_31a3c819.jpg",
-  gestures: "/manus-storage/btp-gestures-matieres_3cdd355b.jpg",
-  territory: "/manus-storage/btp-territoire-aerial_7d477380.jpg",
-  facade: "/manus-storage/btp-facade-monolith_7bee3155.jpg",
-  human: "/manus-storage/btp-human-craft_43150438.jpg",
-  mark: "/manus-storage/btp-monolith-mark_55702eac.png",
-  workersVideo: "/manus-storage/btp-workers-site-web_02cfdc5a.mp4",
-  workersPoster: "/manus-storage/btp-workers-site-poster_123a0d66.jpg",
-  aerialVideo: "/manus-storage/btp-aerial-site-web_e38502e1.mp4",
-  aerialPoster: "/manus-storage/btp-aerial-site-poster_e6175a59.jpg",
+  hero: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/WWSqPkWSnwuKQZFE.jpg",
+  gestures: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/KMvLTzlPLrxKbVdf.jpg",
+  territory: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/zzGCOljjJcEGdTSw.jpg",
+  facade: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/ZPDhGCqnAJdsDsEH.jpg",
+  human: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/YTpbhVNYHxIzLWjW.jpg",
+  mark: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/MfclQdfaoQDGocTD.png",
+  workersVideo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/XOOvLYNeZSiBGiIp.mp4",
+  workersPoster: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/BltUYZnjQrMUbFBu.jpg",
+  aerialVideo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/iZiQCvTiaoHdOBAj.mp4",
+  aerialPoster: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/uTtyCstvCQWyKkGT.jpg",
 };
 
 const heroParallaxImages = [

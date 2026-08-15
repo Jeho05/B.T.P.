@@ -92,3 +92,11 @@
 - [ ] Enregistrer l’application Web Firebase, déployer les règles et injecter les paramètres publics Vercel.
 - [ ] Créer le premier compte et profil administrateur Firebase (`admins/{uid}`).
 - [ ] Tester, synchroniser GitHub et préparer la mise à jour Vercel.
+
+# Correctif — médias Vercel et référence 21st
+
+- [x] Auditer les réponses HTTP des images et vidéos sur la production Vercel.
+- [x] Rendre tous les assets indépendants du stockage temporaire et compatibles avec Vercel.
+- [x] Tenter l’installation de la référence `zoom-parallax` de 21st demandée par le propriétaire (registre externe non autorisé).
+- [x] Adapter localement le composant aux assets B.T.P. sans modifier sa géométrie ou ses échelles.
+- [ ] Vérifier le rendu production, synchroniser GitHub et préparer la publication Vercel.

@@ -343,7 +343,7 @@ h2 em { font-weight: 500; text-transform: none; }
 .archive-page::before { position: absolute; z-index: 0; top: 0; right: max(34px, 6vw); bottom: 0; width: 1px; background: rgba(25, 26, 23, 0.18); content: ""; }
 .archive-page > * { position: relative; z-index: 1; }
 .archive-hero { position: relative; max-width: 100%; min-height: 520px; padding: 60px min(32vw, 500px) 84px 0; border-bottom: 1px solid rgba(25, 26, 23, 0.3); }
-.archive-hero::before { position: absolute; top: 110px; right: 0; width: min(27vw, 380px); height: min(27vw, 380px); opacity: 0.36; background: linear-gradient(0deg, rgba(10, 11, 10, 0.66), transparent 65%), url("/manus-storage/btp-facade-monolith_7bee3155.jpg") center / cover; content: ""; filter: grayscale(1) contrast(1.1); }
+.archive-hero::before { position: absolute; top: 110px; right: 0; width: min(27vw, 380px); height: min(27vw, 380px); opacity: 0.36; background: linear-gradient(0deg, rgba(10, 11, 10, 0.66), transparent 65%), url("https://files.manuscdn.com/user_upload_by_module/session_file/310519663894511915/ZPDhGCqnAJdsDsEH.jpg") center / cover; content: ""; filter: grayscale(1) contrast(1.1); }
 .archive-hero::after { position: absolute; right: 0; bottom: 40px; width: min(27vw, 380px); height: 1px; background: linear-gradient(90deg, var(--brick) 0 58px, rgba(25, 26, 23, 0.35) 58px); content: "COORD. 48.8566 / 02.3522"; padding-top: 10px; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; }
 .archive-back { display: inline-flex; margin-bottom: 70px; color: rgba(25, 26, 23, 0.7); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 .archive-hero .eyebrow { color: var(--brick); }
