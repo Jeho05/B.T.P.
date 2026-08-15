@@ -19,6 +19,10 @@ const ASSETS = {
   facade: "/manus-storage/btp-facade-monolith_7bee3155.jpg",
   human: "/manus-storage/btp-human-craft_43150438.jpg",
   mark: "/manus-storage/btp-monolith-mark_55702eac.png",
+  workersVideo: "/manus-storage/btp-workers-site-web_02cfdc5a.mp4",
+  workersPoster: "/manus-storage/btp-workers-site-poster_123a0d66.jpg",
+  aerialVideo: "/manus-storage/btp-aerial-site-web_e38502e1.mp4",
+  aerialPoster: "/manus-storage/btp-aerial-site-poster_e6175a59.jpg",
 };
 
 const disciplines = [
@@ -56,6 +60,25 @@ export default function Home() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const videos = page.current?.querySelectorAll<HTMLVideoElement>(".scroll-video");
+    if (!videos?.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        const video = entry.target as HTMLVideoElement;
+        if (entry.isIntersecting) void video.play().catch(() => undefined);
+        else video.pause();
+      }),
+      { threshold: 0.24 },
+    );
+    videos.forEach((video) => observer.observe(video));
+    return () => {
+      observer.disconnect();
+      videos.forEach((video) => video.pause());
+    };
   }, []);
 
   useEffect(() => {
@@ -182,7 +205,7 @@ export default function Home() {
             });
 
             gsap.fromTo(
-              ".terrain-panel img",
+              ".terrain-panel img, .terrain-panel video",
               { scale: 1.16 },
               {
                 scale: 1,
@@ -333,8 +356,10 @@ export default function Home() {
 
           <div className="material-composition">
             <figure className="material-image image-reveal">
-              <img src={ASSETS.gestures} alt="Mains d’ouvriers au travail sur une structure de chantier" loading="lazy" decoding="async" />
-              <figcaption><span>Geste / 01</span><span>Le détail engage l’ensemble</span></figcaption>
+              <video className="scroll-video" muted loop playsInline preload="metadata" poster={ASSETS.workersPoster} aria-label="Ouvriers et engins sur un chantier en activité">
+                <source src={ASSETS.workersVideo} type="video/mp4" />
+              </video>
+              <figcaption><span>Geste / 01</span><span>La matière en mouvement</span></figcaption>
             </figure>
 
             <div className="disciplines reveal-group">
@@ -378,14 +403,20 @@ export default function Home() {
                 <img src={ASSETS.facade} alt="Façade monolithique d’un bâtiment contemporain en béton" loading="eager" decoding="async" />
                 <div className="terrain-caption"><span>02 / Ouvrages</span><strong>Donner une présence au bâti</strong><ArrowUpRight size={20} aria-hidden="true" /></div>
               </article>
+              <article className="terrain-panel terrain-panel-video image-reveal">
+                <video className="scroll-video" muted loop playsInline preload="metadata" poster={ASSETS.aerialPoster} aria-label="Vue aérienne d’un chantier de construction en cours">
+                  <source src={ASSETS.aerialVideo} type="video/mp4" />
+                </video>
+                <div className="terrain-caption"><span>03 / En cours</span><strong>Lire le chantier en mouvement</strong><ArrowUpRight size={20} aria-hidden="true" /></div>
+              </article>
               <article className="terrain-manifesto" aria-label="Troisième échelle : l’usage">
-                <span className="eyebrow"><i className="orange-dot" /> 03 / Usages</span>
+                <span className="eyebrow"><i className="orange-dot" /> 04 / Usages</span>
                 <strong>UN LIEU<br />QUI <em>continue.</em></strong>
                 <p>Un ouvrage n’existe vraiment que lorsqu’il accompagne les usages qui suivent sa livraison.</p>
-                <span className="terrain-manifesto-axis">R.03 / 45° / 100</span>
+                <span className="terrain-manifesto-axis">R.04 / 45° / 100</span>
               </article>
             </div>
-            <div className="terrain-scroll-meter" aria-hidden="true"><span>TRAVERSÉE</span><i /><span>01 — 03</span></div>
+            <div className="terrain-scroll-meter" aria-hidden="true"><span>TRAVERSÉE</span><i /><span>01 — 04</span></div>
           </div>
         </section>
 
@@ -405,6 +436,10 @@ export default function Home() {
               </li>
             ))}
           </ol>
+          <div className="method-proof" aria-label="Repère visuel de chantier">
+            <img src={ASSETS.workersPoster} alt="Chantier avec ouvriers et engins en activité" loading="lazy" decoding="async" />
+            <span><i className="orange-dot" /> Trace / chantier vivant</span>
+          </div>
           <div className="method-progress" aria-hidden="true"><i className="method-progress-fill" /></div>
         </section>
 

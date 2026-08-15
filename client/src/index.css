@@ -96,16 +96,16 @@ img { display: block; max-width: 100%; }
   gap: 10px;
   width: fit-content;
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 800;
   letter-spacing: 0.075em;
   line-height: 1;
 }
 
-.brand-sign { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid currentColor; }
-.brand-mark { width: 21px; height: 21px; object-fit: contain; }
-.brand-type { position: relative; padding-left: 1px; }
-.brand-rule { display: block; width: 18px; height: 1px; margin-left: -4px; background: var(--brick-bright); }
+.brand-sign { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid currentColor; }
+.brand-mark { width: 25px; height: 25px; object-fit: contain; }
+.brand-type { position: relative; padding-left: 1px; letter-spacing: 0.11em; }
+.brand-rule { display: block; width: 24px; height: 2px; margin-left: -4px; background: var(--brick-bright); }
 
 .site-nav { display: flex; align-items: center; gap: clamp(20px, 2.5vw, 40px); }
 .site-nav a, .header-cta, .back-top { font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; }
@@ -146,7 +146,7 @@ img { display: block; max-width: 100%; }
 .hero-rule-horizontal { right: 0; bottom: 132px; left: 0; height: 1px; }
 .hero-rule-vertical { top: 84px; right: clamp(34px, 6vw, 106px); bottom: 0; width: 1px; }
 
-.statement-section { position: relative; min-height: 680px; padding: 150px max(34px, 9vw) 130px; background: var(--paper); }
+.statement-section { position: relative; min-height: 680px; padding: 150px max(34px, 9vw) 130px; background-color: var(--paper); background-image: linear-gradient(90deg, rgba(25, 26, 23, 0.022) 1px, transparent 1px), radial-gradient(circle at 86% 80%, rgba(201, 91, 50, 0.075), transparent 22%); background-size: 96px 100%, 100% 100%; }
 .plan-section { position: relative; }
 .plan-section::before { position: absolute; z-index: 2; top: 26px; right: 34px; padding-left: 13px; color: rgba(25, 26, 23, 0.54); background: linear-gradient(90deg, var(--brick) 0 6px, transparent 6px); content: attr(data-plan); font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 .plan-section::after { position: absolute; right: 34px; bottom: 26px; left: 34px; height: 1px; background: linear-gradient(90deg, var(--brick) 0 68px, currentColor 68px); content: ""; opacity: 0.34; }
@@ -174,7 +174,7 @@ h2 em { font-weight: 500; text-transform: none; }
 .material-intro > p { max-width: 340px; margin: 0 0 6px; font-size: 14px; line-height: 1.7; color: rgba(239, 237, 231, 0.78); }
 .material-composition { display: grid; grid-template-columns: minmax(320px, 0.83fr) minmax(370px, 1.17fr); gap: clamp(34px, 7vw, 120px); align-items: start; max-width: 1400px; margin: auto; }
 .material-image { position: relative; margin: 0; overflow: hidden; }
-.material-image img { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; filter: saturate(0.78) contrast(1.04); }
+.material-image img, .material-image video { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; filter: saturate(0.78) contrast(1.04); }
 .material-image figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(239, 237, 231, 0.72); }
 .disciplines { border-top: 1px solid rgba(239, 237, 231, 0.28); }
 .discipline { position: relative; display: grid; grid-template-columns: 66px 1fr minmax(140px, 0.7fr) 22px; gap: 15px; align-items: center; min-height: 150px; border-bottom: 1px solid rgba(239, 237, 231, 0.28); transition: padding 240ms ease, background-color 240ms ease; }
@@ -199,16 +199,18 @@ h2 em { font-weight: 500; text-transform: none; }
 .terrain-scroll-stage { position: relative; max-width: 1580px; height: min(720px, 80vh); margin: 0 auto; overflow: hidden; }
 .terrain-track { display: flex; gap: 18px; width: max-content; height: 100%; }
 .terrain-panel { position: relative; flex: 0 0 min(74vw, 1060px); min-height: 565px; overflow: hidden; color: #fff; background: var(--ink); }
-.terrain-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 700ms cubic-bezier(0.23, 1, 0.32, 1); }
-.terrain-panel:hover img { transform: scale(1.045); }
+.terrain-panel img, .terrain-panel video { width: 100%; height: 100%; object-fit: cover; transition: transform 700ms cubic-bezier(0.23, 1, 0.32, 1); }
+.terrain-panel:hover img, .terrain-panel:hover video { transform: scale(1.045); }
 .terrain-panel::after { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10, 11, 10, 0.75), transparent 50%); content: ""; }
 .terrain-panel-tall { align-self: end; flex-basis: min(43vw, 620px); min-height: 590px; margin-top: 0; }
 .terrain-panel-tall img { object-position: 55% center; }
+.terrain-panel-video { flex-basis: min(48vw, 680px); align-self: start; min-height: 520px; }
+.terrain-panel-video video { object-position: center 43%; filter: saturate(0.7) contrast(1.08) brightness(0.82); }
 .terrain-caption { position: absolute; z-index: 1; right: 24px; bottom: 23px; left: 24px; display: grid; grid-template-columns: 1fr auto; gap: 8px 15px; align-items: end; }
 .terrain-caption span { grid-column: 1 / -1; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
 .terrain-caption strong { font-family: "Barlow Condensed", sans-serif; font-size: clamp(1.7rem, 3vw, 2.8rem); font-weight: 600; letter-spacing: -0.02em; line-height: 0.9; text-transform: uppercase; }
 .terrain-manifesto { position: relative; display: flex; flex: 0 0 min(52vw, 700px); flex-direction: column; justify-content: space-between; min-height: 420px; padding: clamp(28px, 5vw, 76px); overflow: hidden; color: #fff; background: var(--brick); }
-.terrain-manifesto::after { position: absolute; right: -13%; bottom: -29%; color: rgba(255, 255, 255, 0.13); content: "03"; font-family: "Barlow Condensed", sans-serif; font-size: min(43vw, 580px); font-weight: 700; letter-spacing: -0.1em; line-height: 0.7; }
+.terrain-manifesto::after { position: absolute; right: -13%; bottom: -29%; color: rgba(255, 255, 255, 0.13); content: "04"; font-family: "Barlow Condensed", sans-serif; font-size: min(43vw, 580px); font-weight: 700; letter-spacing: -0.1em; line-height: 0.7; }
 .terrain-manifesto .eyebrow { position: relative; z-index: 1; }
 .terrain-manifesto .orange-dot { background: var(--ink); }
 .terrain-manifesto strong { position: relative; z-index: 1; max-width: 460px; font-family: "Barlow Condensed", sans-serif; font-size: clamp(4rem, 8vw, 8rem); font-weight: 700; letter-spacing: -0.06em; line-height: 0.8; }
@@ -236,11 +238,16 @@ h2 em { font-weight: 500; text-transform: none; }
 .method-orbit i { position: absolute; top: 10%; left: 50%; width: 9px; height: 9px; background: var(--brick-bright); }
 .method-progress { position: absolute; right: max(34px, 9vw); bottom: 55px; left: max(34px, 9vw); z-index: 2; height: 2px; background: rgba(239, 237, 231, 0.18); }
 .method-progress-fill { display: block; width: 100%; height: 100%; background: var(--brick-bright); transform: scaleX(0); transform-origin: left; }
+.method-proof { position: absolute; right: max(34px, 9vw); bottom: 88px; display: flex; align-items: end; gap: 14px; width: min(22vw, 255px); padding: 8px; border: 1px solid rgba(239, 237, 231, 0.24); background: rgba(20, 21, 17, 0.76); }
+.method-proof img { width: 58%; aspect-ratio: 1 / 1; object-fit: cover; filter: saturate(0.67) contrast(1.12); }
+.method-proof span { display: flex; flex: 1; align-items: center; gap: 7px; padding-bottom: 3px; color: rgba(239, 237, 231, 0.76); font-size: 8px; font-weight: 700; letter-spacing: 0.1em; line-height: 1.45; text-transform: uppercase; }
+.method-proof .orange-dot { width: 6px; height: 6px; flex: 0 0 auto; }
 .pin-spacer:has(.terrain-scroll-stage), .pin-spacer:has(.method-section) { position: relative; }
 .pin-spacer:has(.terrain-scroll-stage) { background-color: var(--chalk); background-image: linear-gradient(90deg, rgba(25, 26, 23, 0.04) 1px, transparent 1px); background-size: 112px 100%; }
-.pin-spacer:has(.terrain-scroll-stage)::after { position: absolute; right: max(34px, 9vw); bottom: 9%; left: max(34px, 9vw); padding: 28px 0; border-top: 1px solid rgba(25, 26, 23, 0.18); border-bottom: 1px solid rgba(25, 26, 23, 0.18); color: rgba(25, 26, 23, 0.36); content: "03 / TRAVERSÉE — TERRITOIRES · OUVRAGES · USAGES"; font-family: "Barlow Condensed", sans-serif; font-size: clamp(2rem, 4.2vw, 4.4rem); font-weight: 600; letter-spacing: -0.025em; line-height: 0.9; }
+.pin-spacer:has(.terrain-scroll-stage)::before { position: absolute; z-index: 1; right: max(34px, 9vw); bottom: 22%; left: max(34px, 9vw); height: 2px; background: linear-gradient(90deg, var(--brick) 0 18%, rgba(25, 26, 23, 0.22) 18% 100%); content: ""; }
+.pin-spacer:has(.terrain-scroll-stage)::after { position: absolute; right: max(34px, 9vw); bottom: 9%; left: max(34px, 9vw); padding: 28px 0; border-top: 1px solid rgba(25, 26, 23, 0.18); border-bottom: 1px solid rgba(25, 26, 23, 0.18); color: rgba(25, 26, 23, 0.42); content: "03 / TRAVERSÉE — TERRITOIRES · OUVRAGES · CHANTIER\A01 → 04 / PROGRESSION D’OUVRAGE"; white-space: pre-line; font-family: "Barlow Condensed", sans-serif; font-size: clamp(1.9rem, 4.1vw, 4.2rem); font-weight: 600; letter-spacing: -0.025em; line-height: 0.9; }
 .pin-spacer:has(.method-section) { background-color: var(--ink-soft); background-image: linear-gradient(90deg, rgba(239, 237, 231, 0.045) 1px, transparent 1px); background-size: 25% 100%; }
-.pin-spacer:has(.method-section)::after { position: absolute; right: max(34px, 9vw); bottom: 10%; left: max(34px, 9vw); padding-top: 20px; border-top: 1px solid rgba(239, 237, 231, 0.2); color: rgba(239, 237, 231, 0.32); content: "04 / PHASAGE — UNE ÉTAPE À LA FOIS"; font-family: "Barlow Condensed", sans-serif; font-size: clamp(2rem, 4.2vw, 4.4rem); font-weight: 600; letter-spacing: -0.025em; line-height: 0.9; }
+.pin-spacer:has(.method-section)::after { position: absolute; right: max(34px, 9vw); bottom: 10%; left: max(34px, 9vw); padding-top: 20px; border-top: 1px solid rgba(239, 237, 231, 0.2); color: rgba(239, 237, 231, 0.35); content: "04 / PHASAGE — UNE ÉTAPE À LA FOIS\APLAN · ÉQUIPE · MATIÈRE · LIVRAISON"; white-space: pre-line; font-family: "Barlow Condensed", sans-serif; font-size: clamp(1.9rem, 4.1vw, 4.2rem); font-weight: 600; letter-spacing: -0.025em; line-height: 0.9; }
 
 .contact-section { position: relative; display: grid; min-height: 770px; padding: 140px max(34px, 9vw) 70px; overflow: hidden; color: var(--chalk); background-color: #141511; background-image: linear-gradient(90deg, rgba(239, 237, 231, 0.045) 1px, transparent 1px); background-size: 112px 100%; isolation: isolate; }
 .contact-background { position: absolute; z-index: -1; top: -8%; right: -5%; width: min(62vw, 720px); opacity: 0.37; transform: rotate(-8deg); }
@@ -265,8 +272,8 @@ h2 em { font-weight: 500; text-transform: none; }
   .site-header { height: 70px; padding: 0 20px; grid-template-columns: 1fr auto; }
   .site-header.is-scrolled { height: 62px; }
   .brand-lockup { font-size: 22px; }
-  .brand-sign { width: 27px; height: 27px; }
-  .brand-mark { width: 19px; height: 19px; }
+  .brand-sign { width: 30px; height: 30px; }
+  .brand-mark { width: 21px; height: 21px; }
   .site-nav { position: fixed; top: 70px; right: 0; left: 0; display: flex; visibility: hidden; flex-direction: column; align-items: flex-start; gap: 18px; padding: 28px 20px 34px; color: var(--ink); background: var(--paper); opacity: 0; transform: translateY(-8px); transition: visibility 180ms, opacity 180ms ease, transform 180ms ease; box-shadow: 0 12px 20px rgba(25, 26, 23, 0.08); }
   .site-header.is-scrolled .site-nav { top: 62px; }
   .site-nav.is-open { visibility: visible; opacity: 1; transform: translateY(0); }
@@ -311,6 +318,7 @@ h2 em { font-weight: 500; text-transform: none; }
   .method-section { padding-top: 105px; padding-bottom: 85px; }
   .method-orbit { top: 35%; right: -30vw; width: 74vw; }
   .method-progress { right: 20px; bottom: 31px; left: 20px; }
+  .method-proof { right: 20px; bottom: 68px; width: min(48vw, 245px); }
   .pin-spacer:has(.terrain-scroll-stage)::after, .pin-spacer:has(.method-section)::after { right: 20px; left: 20px; font-size: 1.75rem; }
   .method-steps { grid-template-columns: 1fr 1fr; margin-top: 64px; }
   .method-steps li { min-height: 158px; padding-right: 15px; border-bottom: 1px solid rgba(239, 237, 231, 0.24); }
