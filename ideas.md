@@ -87,8 +87,25 @@ La page d’accueil sera vécue comme une traversée de chantier plutôt que com
 
 Chaque mouvement devra apporter une information, révéler une matière ou guider le regard. Le site utilisera des apparitions par translation courte, une progression de lecture et des parallaxes très légères. Aucune animation décorative continue ne doit distraire la navigation, et le contenu reste disponible sans animation pour les personnes qui l’ont désactivée.
 
+## Scroll Film Pass — version 2
+
+La version 2 ne traite plus le scroll comme une succession d’apparitions. Elle le transforme en caméra de lecture : l’image d’ouverture se retire en profondeur, la matière dérive autour de ses repères, les terrains se traversent horizontalement et la méthode demeure volontairement à l’écran pour se construire étape par étape.
+
+| Scène | Mouvement principal | Effet attendu |
+|---|---|---|
+| **Hero** | Décalage différentiel de la photographie, du titre et des métadonnées. | Donner la sensation d’entrer dans l’ouvrage plutôt que de faire défiler une image. |
+| **Gestes** | Contre-déplacements mesurés des détails humains et matériels. | Mettre la matière et le collectif au premier plan. |
+| **Terrains** | Galerie panoramique épinglée, traversée au scroll horizontal. | Faire parcourir physiquement des échelles et des typologies de projet. |
+| **Méthode** | Séquence épinglée : les quatre temps émergent comme un phasage de chantier. | Rendre le processus mémorable et orienter la visite vers une conclusion. |
+| **Contact** | Signe monolithique qui dérive lentement en arrière-plan. | Terminer la visite par une impression de profondeur et de continuité. |
+
+Les scènes épinglées ne s’activent qu’au-delà de 900 px. Sur mobile ou avec les animations réduites, le récit conserve les mêmes contenus dans un défilement vertical sans blocage.
+
 ## Style Decisions
 
 - La signature B.T.P. est toujours affichée comme un lockup propriétaire : le signe de linteau traversé par son axe Terre de Brique est indissociable du mot-signe.
 - La grammaire graphique du site emploie systématiquement des règles fines, axes, codes de section, coordonnées et repères de progression. Ces éléments doivent guider la lecture, jamais devenir de la décoration gratuite.
 - Les visuels alternent une échelle monumentale — ouvrage, territoire, façade — et une échelle humaine — geste, outil, plan, équipe — pour exprimer autant la rigueur que le soin.
+- Chaque scène épinglée doit montrer une preuve de narration pendant toute sa durée : matière, progression, repère, image de projet ou phasage. Aucun intervalle de scroll n’est utilisé comme simple espace vide.
+- Le Terre de Brique est un signal de construction fonctionnel : amorce de règle, point d’axe, avancement, nombre-clé ou action. Il n’est jamais employé pour remplir une surface sans rôle.
+- Le signe linteau/axe se répète comme un repère structurel lié à l’alignement des sections, à la progression et au cadrage du récit.

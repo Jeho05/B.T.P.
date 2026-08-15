@@ -11,3 +11,10 @@
 - [x] Construire les sections et les interactions immersives.
 - [x] Vérifier le comportement sur ordinateur et mobile.
 - [ ] Enregistrer et synchroniser la version finalisée avec GitHub.
+
+# Révision — scroll cinématographique
+
+- [x] Concevoir des scènes de scroll avec épinglage, profondeur et changement d’état visuel.
+- [x] Mettre en mouvement les visuels, repères techniques et compositions de projet.
+- [x] Préserver une expérience lisible et adaptée aux mouvements réduits et aux petits écrans.
+- [ ] Vérifier puis synchroniser la révision immersive sur GitHub.

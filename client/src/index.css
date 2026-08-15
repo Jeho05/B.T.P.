@@ -62,6 +62,9 @@ img { display: block; max-width: 100%; }
 :focus-visible { outline: 2px solid var(--brick-bright); outline-offset: 4px; }
 
 .site-shell { overflow: clip; }
+.scroll-index { position: fixed; z-index: 25; top: 50%; left: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: #fff; font-size: 8px; font-weight: 700; letter-spacing: 0.12em; transform: translateY(-50%); mix-blend-mode: difference; pointer-events: none; }
+.scroll-index i { position: relative; display: block; width: 1px; height: 68px; overflow: hidden; background: rgba(255, 255, 255, 0.35); }
+.scroll-index b { position: absolute; inset: 0; display: block; background: var(--brick-bright); transform: scaleY(0); transform-origin: top; }
 
 .site-header {
   position: fixed;
@@ -144,8 +147,12 @@ img { display: block; max-width: 100%; }
 .hero-rule-vertical { top: 84px; right: clamp(34px, 6vw, 106px); bottom: 0; width: 1px; }
 
 .statement-section { position: relative; min-height: 680px; padding: 150px max(34px, 9vw) 130px; background: var(--paper); }
-.plan-section::before { position: absolute; z-index: 2; top: 26px; right: 34px; color: rgba(25, 26, 23, 0.54); content: attr(data-plan); font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
-.plan-section::after { position: absolute; right: 34px; bottom: 26px; left: 34px; height: 1px; background: currentColor; content: ""; opacity: 0.14; }
+.plan-section { position: relative; }
+.plan-section::before { position: absolute; z-index: 2; top: 26px; right: 34px; padding-left: 13px; color: rgba(25, 26, 23, 0.54); background: linear-gradient(90deg, var(--brick) 0 6px, transparent 6px); content: attr(data-plan); font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.plan-section::after { position: absolute; right: 34px; bottom: 26px; left: 34px; height: 1px; background: linear-gradient(90deg, var(--brick) 0 68px, currentColor 68px); content: ""; opacity: 0.34; }
+.structural-sign { position: absolute; z-index: 3; top: 48px; left: 34px; display: grid; width: 28px; height: 28px; place-items: center; border: 1px solid rgba(25, 26, 23, 0.32); }
+.structural-sign img { width: 18px; height: 18px; opacity: 0.72; }
+.structural-sign i { position: absolute; top: -1px; bottom: -1px; left: 50%; width: 1px; background: var(--brick); }
 .section-index { position: absolute; top: 26px; left: 34px; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(25, 26, 23, 0.58); }
 .statement-layout { display: grid; grid-template-columns: 0.75fr 1.55fr 0.85fr; gap: 36px; align-items: start; max-width: 1450px; margin: auto; }
 .dark-eyebrow { color: rgba(25, 26, 23, 0.58); }
@@ -160,6 +167,8 @@ h2 em { font-weight: 500; text-transform: none; }
 
 .material-section { padding: 125px max(34px, 6vw) 148px; color: var(--chalk); background-color: var(--ink); background-image: linear-gradient(90deg, rgba(239, 237, 231, 0.05) 1px, transparent 1px), linear-gradient(rgba(239, 237, 231, 0.035) 1px, transparent 1px); background-size: 112px 112px; }
 .material-section::before, .method-section::before, .contact-section::before { color: rgba(239, 237, 231, 0.55); }
+.material-section .structural-sign, .method-section .structural-sign, .contact-section .structural-sign { border-color: rgba(239, 237, 231, 0.32); }
+.material-section .structural-sign img, .method-section .structural-sign img, .contact-section .structural-sign img { filter: grayscale(1) brightness(2.4); opacity: 0.82; }
 .material-intro { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: end; max-width: 1400px; margin: 0 auto 74px; }
 .material-intro h2 { margin-top: 20px; }
 .material-intro > p { max-width: 340px; margin: 0 0 6px; font-size: 14px; line-height: 1.7; color: rgba(239, 237, 231, 0.78); }
@@ -175,7 +184,7 @@ h2 em { font-weight: 500; text-transform: none; }
 .discipline p { margin: 0; font-size: 12px; line-height: 1.65; color: rgba(239, 237, 231, 0.68); }
 .discipline-plus { transition: transform 240ms ease; }
 .discipline:hover .discipline-plus { transform: rotate(90deg); }
-.craft-proof { display: grid; grid-template-columns: minmax(260px, 0.8fr) minmax(200px, 0.42fr); gap: clamp(28px, 8vw, 150px); align-items: center; max-width: 1000px; margin: 112px 0 0 auto; padding-top: 26px; border-top: 1px solid rgba(239, 237, 231, 0.28); }
+.craft-proof { display: grid; grid-template-columns: minmax(260px, 0.76fr) minmax(250px, 0.64fr); gap: clamp(28px, 8vw, 150px); align-items: center; max-width: 1160px; margin: 112px 0 0 auto; padding-top: 26px; border-top: 1px solid rgba(239, 237, 231, 0.28); }
 .craft-proof-copy { position: relative; min-height: 280px; padding: 18px 32px 25px 0; }
 .craft-proof-copy::before { position: absolute; top: 0; left: 0; width: 42px; height: 1px; background: var(--brick-bright); content: ""; }
 .craft-proof .eyebrow { padding-top: 18px; }
@@ -184,21 +193,32 @@ h2 em { font-weight: 500; text-transform: none; }
 .craft-coordinate { position: absolute; bottom: 0; left: 0; color: rgba(239, 237, 231, 0.58); font-size: 9px; font-weight: 700; letter-spacing: 0.13em; }
 .craft-proof > img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: saturate(0.72) contrast(1.03); }
 
-.terrain-section { padding: 132px max(34px, 6vw) 0; background-color: var(--chalk); background-image: linear-gradient(90deg, rgba(25, 26, 23, 0.04) 1px, transparent 1px); background-size: 112px 100%; }
+.terrain-section { padding: 132px max(34px, 6vw) 100px; background-color: var(--chalk); background-image: linear-gradient(90deg, rgba(25, 26, 23, 0.04) 1px, transparent 1px); background-size: 112px 100%; }
 .terrain-heading { display: grid; grid-template-columns: 0.68fr 1.4fr 0.68fr; gap: 42px; align-items: end; max-width: 1400px; margin: 0 auto 78px; }
 .terrain-heading > p:last-child { max-width: 270px; margin: 0 0 7px; font-size: 13px; line-height: 1.7; }
-.terrain-gallery { display: grid; grid-template-columns: 1.42fr 0.78fr; gap: 18px; max-width: 1580px; margin: 0 auto; }
-.terrain-panel { position: relative; min-height: 565px; overflow: hidden; color: #fff; background: var(--ink); }
+.terrain-scroll-stage { position: relative; max-width: 1580px; height: min(720px, 80vh); margin: 0 auto; overflow: hidden; }
+.terrain-track { display: flex; gap: 18px; width: max-content; height: 100%; }
+.terrain-panel { position: relative; flex: 0 0 min(74vw, 1060px); min-height: 565px; overflow: hidden; color: #fff; background: var(--ink); }
 .terrain-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 700ms cubic-bezier(0.23, 1, 0.32, 1); }
 .terrain-panel:hover img { transform: scale(1.045); }
 .terrain-panel::after { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10, 11, 10, 0.75), transparent 50%); content: ""; }
-.terrain-panel-tall { min-height: 690px; margin-top: 100px; }
+.terrain-panel-tall { align-self: end; flex-basis: min(43vw, 620px); min-height: 590px; margin-top: 0; }
 .terrain-panel-tall img { object-position: 55% center; }
 .terrain-caption { position: absolute; z-index: 1; right: 24px; bottom: 23px; left: 24px; display: grid; grid-template-columns: 1fr auto; gap: 8px 15px; align-items: end; }
 .terrain-caption span { grid-column: 1 / -1; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
 .terrain-caption strong { font-family: "Barlow Condensed", sans-serif; font-size: clamp(1.7rem, 3vw, 2.8rem); font-weight: 600; letter-spacing: -0.02em; line-height: 0.9; text-transform: uppercase; }
+.terrain-manifesto { position: relative; display: flex; flex: 0 0 min(52vw, 700px); flex-direction: column; justify-content: space-between; min-height: 420px; padding: clamp(28px, 5vw, 76px); overflow: hidden; color: #fff; background: var(--brick); }
+.terrain-manifesto::after { position: absolute; right: -13%; bottom: -29%; color: rgba(255, 255, 255, 0.13); content: "03"; font-family: "Barlow Condensed", sans-serif; font-size: min(43vw, 580px); font-weight: 700; letter-spacing: -0.1em; line-height: 0.7; }
+.terrain-manifesto .eyebrow { position: relative; z-index: 1; }
+.terrain-manifesto .orange-dot { background: var(--ink); }
+.terrain-manifesto strong { position: relative; z-index: 1; max-width: 460px; font-family: "Barlow Condensed", sans-serif; font-size: clamp(4rem, 8vw, 8rem); font-weight: 700; letter-spacing: -0.06em; line-height: 0.8; }
+.terrain-manifesto strong em { font-weight: 500; }
+.terrain-manifesto p { position: relative; z-index: 1; max-width: 280px; margin: 0; font-size: 13px; line-height: 1.7; }
+.terrain-manifesto-axis { position: relative; z-index: 1; font-size: 9px; font-weight: 700; letter-spacing: 0.13em; }
+.terrain-scroll-meter { position: absolute; z-index: 2; right: 24px; bottom: 23px; left: 24px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 13px; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.13em; }
+.terrain-scroll-meter i { height: 1px; background: rgba(255, 255, 255, 0.65); }
 
-.method-section { padding: 170px max(34px, 9vw) 120px; color: var(--chalk); background-color: var(--ink-soft); background-image: linear-gradient(90deg, rgba(239, 237, 231, 0.045) 1px, transparent 1px); background-size: 25% 100%; }
+.method-section { position: relative; padding: 170px max(34px, 9vw) 120px; overflow: hidden; color: var(--chalk); background-color: var(--ink-soft); background-image: linear-gradient(90deg, rgba(239, 237, 231, 0.045) 1px, transparent 1px); background-size: 25% 100%; }
 .method-top { display: grid; grid-template-columns: 0.78fr 1.22fr; gap: 42px; max-width: 1400px; margin: auto; }
 .method-top h2 { max-width: 610px; font-size: clamp(3.55rem, 6.2vw, 6.7rem); }
 .method-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; max-width: 1400px; margin: 112px auto 0; padding: 0; list-style: none; border-top: 1px solid rgba(239, 237, 231, 0.3); }
@@ -208,6 +228,19 @@ h2 em { font-weight: 500; text-transform: none; }
 .method-steps span { color: var(--brick-bright); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; }
 .method-steps strong { max-width: 170px; margin-top: auto; font-family: "Barlow Condensed", sans-serif; font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 500; letter-spacing: -0.025em; line-height: 0.9; text-transform: uppercase; }
 .method-steps svg { position: absolute; right: 20px; bottom: 1px; color: rgba(239, 237, 231, 0.52); }
+.method-orbit { position: absolute; top: 50%; right: -8vw; display: grid; width: min(42vw, 570px); aspect-ratio: 1; place-items: center; border: 1px solid rgba(239, 237, 231, 0.14); border-radius: 50%; color: rgba(239, 237, 231, 0.11); transform: translateY(-50%) rotate(-24deg) scale(0.82); }
+.method-orbit::before, .method-orbit::after { position: absolute; background: currentColor; content: ""; }
+.method-orbit::before { width: 1px; height: 135%; }
+.method-orbit::after { width: 135%; height: 1px; }
+.method-orbit span { font-family: "Barlow Condensed", sans-serif; font-size: min(26vw, 340px); font-weight: 700; letter-spacing: -0.08em; line-height: 1; }
+.method-orbit i { position: absolute; top: 10%; left: 50%; width: 9px; height: 9px; background: var(--brick-bright); }
+.method-progress { position: absolute; right: max(34px, 9vw); bottom: 55px; left: max(34px, 9vw); z-index: 2; height: 2px; background: rgba(239, 237, 231, 0.18); }
+.method-progress-fill { display: block; width: 100%; height: 100%; background: var(--brick-bright); transform: scaleX(0); transform-origin: left; }
+.pin-spacer:has(.terrain-scroll-stage), .pin-spacer:has(.method-section) { position: relative; }
+.pin-spacer:has(.terrain-scroll-stage) { background-color: var(--chalk); background-image: linear-gradient(90deg, rgba(25, 26, 23, 0.04) 1px, transparent 1px); background-size: 112px 100%; }
+.pin-spacer:has(.terrain-scroll-stage)::after { position: absolute; right: max(34px, 9vw); bottom: 9%; left: max(34px, 9vw); padding: 28px 0; border-top: 1px solid rgba(25, 26, 23, 0.18); border-bottom: 1px solid rgba(25, 26, 23, 0.18); color: rgba(25, 26, 23, 0.36); content: "03 / TRAVERSÉE — TERRITOIRES · OUVRAGES · USAGES"; font-family: "Barlow Condensed", sans-serif; font-size: clamp(2rem, 4.2vw, 4.4rem); font-weight: 600; letter-spacing: -0.025em; line-height: 0.9; }
+.pin-spacer:has(.method-section) { background-color: var(--ink-soft); background-image: linear-gradient(90deg, rgba(239, 237, 231, 0.045) 1px, transparent 1px); background-size: 25% 100%; }
+.pin-spacer:has(.method-section)::after { position: absolute; right: max(34px, 9vw); bottom: 10%; left: max(34px, 9vw); padding-top: 20px; border-top: 1px solid rgba(239, 237, 231, 0.2); color: rgba(239, 237, 231, 0.32); content: "04 / PHASAGE — UNE ÉTAPE À LA FOIS"; font-family: "Barlow Condensed", sans-serif; font-size: clamp(2rem, 4.2vw, 4.4rem); font-weight: 600; letter-spacing: -0.025em; line-height: 0.9; }
 
 .contact-section { position: relative; display: grid; min-height: 770px; padding: 140px max(34px, 9vw) 70px; overflow: hidden; color: var(--chalk); background-color: #141511; background-image: linear-gradient(90deg, rgba(239, 237, 231, 0.045) 1px, transparent 1px); background-size: 112px 100%; isolation: isolate; }
 .contact-background { position: absolute; z-index: -1; top: -8%; right: -5%; width: min(62vw, 720px); opacity: 0.37; transform: rotate(-8deg); }
@@ -268,10 +301,17 @@ h2 em { font-weight: 500; text-transform: none; }
   .discipline p { display: none; }
   .terrain-section { padding-top: 100px; }
   .terrain-heading { margin-bottom: 46px; }
-  .terrain-gallery { grid-template-columns: 1fr; gap: 12px; }
-  .terrain-panel, .terrain-panel-tall { min-height: 465px; margin-top: 0; }
+  .scroll-index { display: none; }
+  .terrain-scroll-stage { height: auto; overflow: visible; }
+  .terrain-track { display: grid; width: 100%; height: auto; gap: 12px; }
+  .terrain-panel, .terrain-panel-tall { width: 100%; min-height: 465px; margin-top: 0; }
   .terrain-panel-tall { min-height: 545px; }
+  .terrain-manifesto { min-height: 430px; }
+  .terrain-scroll-meter { display: none; }
   .method-section { padding-top: 105px; padding-bottom: 85px; }
+  .method-orbit { top: 35%; right: -30vw; width: 74vw; }
+  .method-progress { right: 20px; bottom: 31px; left: 20px; }
+  .pin-spacer:has(.terrain-scroll-stage)::after, .pin-spacer:has(.method-section)::after { right: 20px; left: 20px; font-size: 1.75rem; }
   .method-steps { grid-template-columns: 1fr 1fr; margin-top: 64px; }
   .method-steps li { min-height: 158px; padding-right: 15px; border-bottom: 1px solid rgba(239, 237, 231, 0.24); }
   .method-steps li:nth-child(2) { border-right: 0; }
@@ -297,9 +337,13 @@ h2 em { font-weight: 500; text-transform: none; }
   .craft-proof-copy { min-height: 215px; }
   .plan-section::before { top: 18px; right: 20px; }
   .plan-section::after { right: 20px; bottom: 18px; left: 20px; }
+  .structural-sign { top: 43px; left: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .terrain-scroll-stage { height: auto; overflow: visible; }
+  .terrain-track { display: grid; width: 100%; height: auto; }
+  .terrain-panel, .terrain-panel-tall { width: 100%; min-height: 500px; margin-top: 0; }
 }

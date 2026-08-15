@@ -79,16 +79,35 @@ export default function Home() {
           .from(".hero-copy", { y: 22, opacity: 0, duration: 0.7 }, "-=0.54")
           .from(".hero-meta", { y: 16, opacity: 0, duration: 0.55 }, "-=0.42");
 
-        gsap.to(".hero-photo", {
-          scale: 1.075,
-          ease: "none",
+        const heroScroll = gsap.timeline({
           scrollTrigger: {
             trigger: ".hero",
             start: "top top",
             end: "bottom top",
-            scrub: true,
+            scrub: 0.7,
           },
         });
+        heroScroll
+          .to(".hero-photo", { scale: 1.15, yPercent: 13, ease: "none" }, 0)
+          .to(".hero-inner", { yPercent: -17, ease: "none" }, 0)
+          .to(".hero-meta", { y: 72, opacity: 0, ease: "none" }, 0)
+          .to(".hero-shade", { opacity: 0.7, ease: "none" }, 0);
+
+        gsap.fromTo(
+          ".scroll-index-fill",
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            transformOrigin: "top",
+            ease: "none",
+            scrollTrigger: {
+              trigger: "main",
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 0.25,
+            },
+          },
+        );
 
         gsap.utils.toArray<HTMLElement>(".reveal-group").forEach((group) => {
           gsap.from(group.children, {
@@ -118,8 +137,88 @@ export default function Home() {
             },
           );
         });
+
+        gsap.to(".material-image", {
+          yPercent: -11,
+          rotation: -1.2,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".material-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.8,
+          },
+        });
+
+        gsap.to(".craft-proof", {
+          xPercent: -8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".craft-proof",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.8,
+          },
+        });
+
+        const media = gsap.matchMedia();
+        media.add("(min-width: 901px)", () => {
+          const stage = document.querySelector<HTMLElement>(".terrain-scroll-stage");
+          const track = document.querySelector<HTMLElement>(".terrain-track");
+
+          if (stage && track) {
+            gsap.to(track, {
+              x: () => -(track.scrollWidth - stage.clientWidth),
+              ease: "none",
+              scrollTrigger: {
+                trigger: stage,
+                start: "top top",
+                end: () => `+=${Math.max(track.scrollWidth - stage.clientWidth, 1)}`,
+                pin: true,
+                scrub: 0.9,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+              },
+            });
+
+            gsap.fromTo(
+              ".terrain-panel img",
+              { scale: 1.16 },
+              {
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: stage,
+                  start: "top top",
+                  end: () => `+=${Math.max(track.scrollWidth - stage.clientWidth, 1)}`,
+                  scrub: 0.9,
+                },
+              },
+            );
+          }
+
+          const methodTimeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".method-section",
+              start: "top top",
+              end: "+=1250",
+              pin: true,
+              scrub: 0.85,
+              anticipatePin: 1,
+            },
+          });
+          methodTimeline
+            .fromTo(".method-top", { xPercent: -18, opacity: 0.25 }, { xPercent: 0, opacity: 1, duration: 0.24 }, 0)
+            .fromTo(".method-steps li", { y: 86, opacity: 0.2 }, { y: 0, opacity: 1, stagger: 0.18, duration: 0.5 }, 0.18)
+            .to(".method-progress-fill", { scaleX: 1, transformOrigin: "left", duration: 0.95 }, 0)
+            .to(".method-orbit", { rotate: 0, scale: 1, duration: 0.8 }, 0.08);
+        });
+        cleanup = () => {
+          media.revert();
+          context.revert();
+        };
       }, page);
-      cleanup = () => context.revert();
+      cleanup ??= () => context.revert();
     };
 
     void loadMotion();
@@ -163,6 +262,12 @@ export default function Home() {
         </button>
       </header>
 
+      <aside className="scroll-index" aria-hidden="true">
+        <span>00</span>
+        <i><b className="scroll-index-fill" /></i>
+        <span>05</span>
+      </aside>
+
       <main>
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-media" aria-hidden="true">
@@ -198,6 +303,7 @@ export default function Home() {
         </section>
 
         <section className="statement-section plan-section" data-plan="AXIS / 01 — 100" id="vision" aria-labelledby="vision-title">
+          <div className="structural-sign" aria-hidden="true"><img src={ASSETS.mark} alt="" /><i /></div>
           <div className="section-index" aria-hidden="true">01 / vision</div>
           <div className="statement-layout reveal-group">
             <p className="eyebrow dark-eyebrow">Une entreprise de construction, jamais une formule</p>
@@ -216,6 +322,7 @@ export default function Home() {
         </section>
 
         <section className="material-section plan-section" data-plan="MAT / 02 — 45°" id="savoir-faire" aria-labelledby="material-title">
+          <div className="structural-sign" aria-hidden="true"><img src={ASSETS.mark} alt="" /><i /></div>
           <div className="material-intro reveal-group">
             <div>
               <p className="eyebrow">02 / gestes & matières</p>
@@ -254,25 +361,37 @@ export default function Home() {
         </section>
 
         <section className="terrain-section plan-section" data-plan="SCALE / 03 — R.12" id="terrains" aria-labelledby="terrain-title">
+          <div className="structural-sign" aria-hidden="true"><img src={ASSETS.mark} alt="" /><i /></div>
           <div className="terrain-heading reveal-group">
             <p className="eyebrow dark-eyebrow">03 / échelle & territoire</p>
             <h2 id="terrain-title">Des lieux qui<br /><em>prennent position.</em></h2>
             <p>Nous intervenons là où l’architecture, le paysage et l’usage doivent former un tout lisible.</p>
           </div>
 
-          <div className="terrain-gallery">
-            <article className="terrain-panel terrain-panel-wide image-reveal">
-              <img src={ASSETS.territory} alt="Vue aérienne d’un aménagement paysager et d’une infrastructure contemporaine" loading="lazy" decoding="async" />
-              <div className="terrain-caption"><span>01 / Territoires</span><strong>Aménager les continuités</strong><ArrowUpRight size={20} aria-hidden="true" /></div>
-            </article>
-            <article className="terrain-panel terrain-panel-tall image-reveal">
-              <img src={ASSETS.facade} alt="Façade monolithique d’un bâtiment contemporain en béton" loading="lazy" decoding="async" />
-              <div className="terrain-caption"><span>02 / Ouvrages</span><strong>Donner une présence au bâti</strong><ArrowUpRight size={20} aria-hidden="true" /></div>
-            </article>
+          <div className="terrain-scroll-stage">
+            <div className="terrain-track">
+              <article className="terrain-panel terrain-panel-wide image-reveal">
+                <img src={ASSETS.territory} alt="Vue aérienne d’un aménagement paysager et d’une infrastructure contemporaine" loading="eager" decoding="async" />
+                <div className="terrain-caption"><span>01 / Territoires</span><strong>Aménager les continuités</strong><ArrowUpRight size={20} aria-hidden="true" /></div>
+              </article>
+              <article className="terrain-panel terrain-panel-tall image-reveal">
+                <img src={ASSETS.facade} alt="Façade monolithique d’un bâtiment contemporain en béton" loading="eager" decoding="async" />
+                <div className="terrain-caption"><span>02 / Ouvrages</span><strong>Donner une présence au bâti</strong><ArrowUpRight size={20} aria-hidden="true" /></div>
+              </article>
+              <article className="terrain-manifesto" aria-label="Troisième échelle : l’usage">
+                <span className="eyebrow"><i className="orange-dot" /> 03 / Usages</span>
+                <strong>UN LIEU<br />QUI <em>continue.</em></strong>
+                <p>Un ouvrage n’existe vraiment que lorsqu’il accompagne les usages qui suivent sa livraison.</p>
+                <span className="terrain-manifesto-axis">R.03 / 45° / 100</span>
+              </article>
+            </div>
+            <div className="terrain-scroll-meter" aria-hidden="true"><span>TRAVERSÉE</span><i /><span>01 — 03</span></div>
           </div>
         </section>
 
         <section className="method-section plan-section" data-plan="FLOW / 04 — 1:100" aria-labelledby="method-title">
+          <div className="structural-sign" aria-hidden="true"><img src={ASSETS.mark} alt="" /><i /></div>
+          <div className="method-orbit" aria-hidden="true"><span>04</span><i /></div>
           <div className="method-top reveal-group">
             <p className="eyebrow">04 / conduite d’ouvrage</p>
             <h2 id="method-title">Le projet avance<br /><em>quand tout s’aligne.</em></h2>
@@ -286,9 +405,11 @@ export default function Home() {
               </li>
             ))}
           </ol>
+          <div className="method-progress" aria-hidden="true"><i className="method-progress-fill" /></div>
         </section>
 
         <section className="contact-section plan-section" data-plan="POINT / 05 — OPEN" id="contact" aria-labelledby="contact-title">
+          <div className="structural-sign" aria-hidden="true"><img src={ASSETS.mark} alt="" /><i /></div>
           <div className="contact-background" aria-hidden="true">
             <img src={ASSETS.mark} alt="" />
           </div>
