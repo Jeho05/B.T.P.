@@ -31,4 +31,11 @@
 - [x] Auditer les séquences en interaction réelle dans le navigateur.
 - [x] Étudier des références de motion design et de scroll cinématographique.
 - [x] Remplacer les mouvements discrets par des transformations de scène visibles.
-- [ ] Vérifier le parcours sur ordinateur et mobile, puis synchroniser la correction.
+- [x] Vérifier le parcours sur ordinateur et mobile, puis synchroniser la correction.
+
+# Révision — hero zoom-parallaxe
+
+- [x] Vérifier la compatibilité de Framer Motion et des composants UI existants.
+- [x] Adapter le zoom-parallaxe aux visuels B.T.P. et à l’identité de marque.
+- [x] Remplacer le hero actuel par une scène d’introduction transformée au scroll.
+- [ ] Tester puis synchroniser la révision du hero.

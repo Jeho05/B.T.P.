@@ -11,6 +11,7 @@ import {
   Plus,
   X,
 } from "lucide-react";
+import { ZoomParallax } from "@/components/ui/zoom-parallax";
 
 const ASSETS = {
   hero: "/manus-storage/btp-hero-cinematic_31a3c819.jpg",
@@ -24,6 +25,16 @@ const ASSETS = {
   aerialVideo: "/manus-storage/btp-aerial-site-web_e38502e1.mp4",
   aerialPoster: "/manus-storage/btp-aerial-site-poster_e6175a59.jpg",
 };
+
+const heroParallaxImages = [
+  { src: ASSETS.hero, alt: "Chantier d’un ouvrage en béton au crépuscule" },
+  { src: ASSETS.gestures, alt: "Geste de mise en œuvre sur un chantier" },
+  { src: ASSETS.territory, alt: "Vue aérienne d’un territoire aménagé" },
+  { src: ASSETS.facade, alt: "Façade d’architecture minérale" },
+  { src: ASSETS.human, alt: "Professionnels du chantier en concertation" },
+  { src: ASSETS.workersPoster, alt: "Équipe et engins en activité sur un chantier" },
+  { src: ASSETS.aerialPoster, alt: "Vue aérienne d’un chantier en transformation" },
+];
 
 const disciplines = [
   {
@@ -101,20 +112,6 @@ export default function Home() {
           .from(".hero-title span", { yPercent: 112, duration: 0.95, stagger: 0.1 }, "-=0.28")
           .from(".hero-copy", { y: 22, opacity: 0, duration: 0.7 }, "-=0.54")
           .from(".hero-meta", { y: 16, opacity: 0, duration: 0.55 }, "-=0.42");
-
-        const heroScroll = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.7,
-          },
-        });
-        heroScroll
-          .to(".hero-photo", { scale: 1.15, yPercent: 13, ease: "none" }, 0)
-          .to(".hero-inner", { yPercent: -17, ease: "none" }, 0)
-          .to(".hero-meta", { y: 72, opacity: 0, ease: "none" }, 0)
-          .to(".hero-shade", { opacity: 0.7, ease: "none" }, 0);
 
         gsap.fromTo(
           ".scroll-index-fill",
@@ -330,38 +327,36 @@ export default function Home() {
       </aside>
 
       <main>
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-media" aria-hidden="true">
-            <img className="hero-photo" src={ASSETS.hero} alt="" />
-            <div className="hero-shade" />
-            <div className="hero-grain" />
-          </div>
-          <div className="hero-rule hero-rule-horizontal" aria-hidden="true" />
-          <div className="hero-rule hero-rule-vertical" aria-hidden="true" />
+        <ZoomParallax images={heroParallaxImages} className="hero-zoom-shell">
+          <section className="hero" aria-labelledby="hero-title">
+            <div className="hero-grain" aria-hidden="true" />
+            <div className="hero-rule hero-rule-horizontal" aria-hidden="true" />
+            <div className="hero-rule hero-rule-vertical" aria-hidden="true" />
 
-          <div className="hero-inner">
-            <p className="eyebrow hero-kicker"><span className="orange-dot" /> Depuis le terrain, pour le réel</p>
-            <h1 className="hero-title" id="hero-title">
-              <span>Ce qui compte</span>
-              <span>se construit.</span>
-            </h1>
-            <div className="hero-copy">
-              <p>Des ouvrages guidés par la précision du geste, la lecture du lieu et l’exigence de ce qui reste.</p>
-              <a className="text-link text-link-light" href="#vision">
-                Entrer dans l’ouvrage <ArrowDownRight aria-hidden="true" size={18} />
-              </a>
+            <div className="hero-inner">
+              <p className="eyebrow hero-kicker"><span className="orange-dot" /> Depuis le terrain, pour le réel</p>
+              <h1 className="hero-title" id="hero-title">
+                <span>Ce qui compte</span>
+                <span>se construit.</span>
+              </h1>
+              <div className="hero-copy">
+                <p>Des ouvrages guidés par la précision du geste, la lecture du lieu et l’exigence de ce qui reste.</p>
+                <a className="text-link text-link-light" href="#vision">
+                  Entrer dans l’ouvrage <ArrowDownRight aria-hidden="true" size={18} />
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div className="hero-meta">
-            <p>Étude <span>·</span> Construction <span>·</span> Aménagement</p>
-            <a className="scroll-cue" href="#vision" aria-label="Découvrir la suite">
-              <MoveDown size={18} aria-hidden="true" />
-              <span>Défiler</span>
-            </a>
-            <p className="hero-coordinate">45° 45′ N / 04° 50′ E</p>
-          </div>
-        </section>
+            <div className="hero-meta">
+              <p>Étude <span>·</span> Construction <span>·</span> Aménagement</p>
+              <a className="scroll-cue" href="#vision" aria-label="Découvrir la suite">
+                <MoveDown size={18} aria-hidden="true" />
+                <span>Défiler</span>
+              </a>
+              <p className="hero-coordinate">45° 45′ N / 04° 50′ E</p>
+            </div>
+          </section>
+        </ZoomParallax>
 
         <section className="cinema-stage" aria-labelledby="cinema-title">
           <h2 className="visually-hidden" id="cinema-title">Une traversée du chantier en trois mouvements</h2>

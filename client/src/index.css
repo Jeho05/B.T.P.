@@ -118,12 +118,31 @@ img { display: block; max-width: 100%; }
 .header-cta:hover svg, .back-top:hover svg { transform: translate(3px, -3px); }
 .menu-toggle { display: none; color: inherit; background: transparent; border: 0; }
 
-.hero { position: relative; display: grid; min-height: max(680px, 100svh); color: #fff; background: var(--ink); isolation: isolate; }
-.hero-media, .hero-photo, .hero-shade, .hero-grain { position: absolute; inset: 0; }
-.hero-media { z-index: -2; overflow: hidden; }
-.hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.hero-shade { z-index: 1; background: linear-gradient(90deg, rgba(10, 11, 10, 0.86) 0%, rgba(10, 11, 10, 0.5) 48%, rgba(10, 11, 10, 0.1) 100%), linear-gradient(0deg, rgba(10, 11, 10, 0.5), transparent 40%); }
-.hero-grain { z-index: 2; opacity: 0.15; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"); mix-blend-mode: soft-light; pointer-events: none; }
+.zoom-parallax { position: relative; height: 300vh; background: var(--ink); }
+.zoom-parallax__sticky { position: sticky; top: 0; height: 100svh; min-height: 680px; overflow: hidden; isolation: isolate; }
+.zoom-parallax__layers, .zoom-parallax__veil, .zoom-parallax__content { position: absolute; inset: 0; }
+.zoom-parallax__layers { z-index: -2; overflow: hidden; background: var(--ink); }
+.zoom-parallax__layer { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; will-change: transform; }
+.zoom-parallax__frame { position: relative; width: 25vw; height: 25vh; overflow: hidden; background: var(--ink); box-shadow: 0 0 0 1px rgba(239, 237, 231, 0.08); }
+.zoom-parallax__frame img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.72) contrast(1.08) brightness(0.78); }
+.zoom-parallax__layer--hero { z-index: 1; }
+.zoom-parallax__layer--hero .zoom-parallax__frame { width: 100vw; height: 100svh; box-shadow: none; }
+.zoom-parallax__layer--northwest { z-index: 2; }
+.zoom-parallax__layer--northwest .zoom-parallax__frame { position: absolute; top: -30vh; left: 5vw; width: 35vw; height: 30vh; }
+.zoom-parallax__layer--west { z-index: 3; }
+.zoom-parallax__layer--west .zoom-parallax__frame { position: absolute; top: -10vh; left: -25vw; width: 20vw; height: 45vh; }
+.zoom-parallax__layer--east { z-index: 4; }
+.zoom-parallax__layer--east .zoom-parallax__frame { position: absolute; left: 27.5vw; width: 25vw; height: 25vh; }
+.zoom-parallax__layer--southwest { z-index: 5; }
+.zoom-parallax__layer--southwest .zoom-parallax__frame { position: absolute; top: 27.5vh; left: 5vw; width: 20vw; height: 25vh; }
+.zoom-parallax__layer--south { z-index: 6; }
+.zoom-parallax__layer--south .zoom-parallax__frame { position: absolute; top: 27.5vh; left: -22.5vw; width: 30vw; height: 25vh; }
+.zoom-parallax__layer--southeast { z-index: 7; }
+.zoom-parallax__layer--southeast .zoom-parallax__frame { position: absolute; top: 22.5vh; left: 25vw; width: 15vw; height: 15vh; }
+.zoom-parallax__veil { z-index: -1; background: linear-gradient(90deg, rgba(10, 11, 10, 0.84) 0%, rgba(10, 11, 10, 0.5) 48%, rgba(10, 11, 10, 0.17) 100%), linear-gradient(0deg, rgba(10, 11, 10, 0.5), transparent 40%); pointer-events: none; }
+.zoom-parallax__content { z-index: 2; will-change: opacity, transform; }
+.hero { position: relative; display: grid; height: 100%; min-height: max(680px, 100svh); color: #fff; background: transparent; isolation: isolate; }
+.hero-grain { position: absolute; z-index: 1; inset: 0; opacity: 0.15; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"); mix-blend-mode: soft-light; pointer-events: none; }
 
 .hero-inner { align-self: center; width: min(1120px, calc(100% - 68px)); margin: 44px auto 0; }
 .eyebrow { display: flex; align-items: center; gap: 9px; margin: 0; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; line-height: 1.3; text-transform: uppercase; }
@@ -310,6 +329,12 @@ h2 em { font-weight: 500; text-transform: none; }
   .site-nav a { font-family: "Barlow Condensed", sans-serif; font-size: 27px; letter-spacing: 0.02em; }
   .header-cta { display: none; }
   .menu-toggle { display: grid; place-items: center; }
+  .zoom-parallax { height: 155svh; }
+  .zoom-parallax__sticky { min-height: 0; }
+  .zoom-parallax__layer--northwest .zoom-parallax__frame { top: 12vh; left: 54vw; width: 50vw; height: 25vh; }
+  .zoom-parallax__layer--east .zoom-parallax__frame { top: 56vh; left: -16vw; width: 44vw; height: 20vh; }
+  .zoom-parallax__layer--west, .zoom-parallax__layer--southwest, .zoom-parallax__layer--south, .zoom-parallax__layer--southeast { display: none; }
+  .zoom-parallax__veil { background: linear-gradient(90deg, rgba(10, 11, 10, 0.86), rgba(10, 11, 10, 0.28)), linear-gradient(0deg, rgba(10, 11, 10, 0.58), transparent 48%); }
   .hero { min-height: 700px; }
   .hero-inner { width: calc(100% - 40px); margin-top: 70px; }
   .hero-title { font-size: clamp(4.2rem, 14vw, 6.8rem); }
@@ -398,6 +423,9 @@ h2 em { font-weight: 500; text-transform: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .cinema-stage { height: auto; min-height: 0; }
+  .zoom-parallax { height: 100svh; }
+  .zoom-parallax__layer:not(.zoom-parallax__layer--hero) { display: none; }
+  .zoom-parallax__content { opacity: 1 !important; transform: none !important; }
   .cinema-state { visibility: visible !important; opacity: 1 !important; transform: none !important; }
   .terrain-scroll-stage { height: auto; overflow: visible; }
   .terrain-track { display: grid; width: 100%; height: auto; }
